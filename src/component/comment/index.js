@@ -3,7 +3,7 @@ import './index.css'
 import Store from '../../redux/store';
 import Action from '../../redux/action';
 import CommentList from './commentl_ist/comment_list'
-
+import axios from 'axios';
 /**
  * 评价组件，分为两块。左侧为新评论输入区；右侧为评论列表模块
  */
@@ -15,6 +15,14 @@ class Comment extends Component {
             newCommentUser: "",
             commentList: []
         }
+    }
+
+    componentDidMount() {
+        axios.post('http://localhost:3000/restful/index',{}).then((response)=>{
+            console.log(response)
+        }).catch((err)=>{
+            console.log(err)
+        }).finally()
     }
 
     handleUserNameChange = (event) => {
