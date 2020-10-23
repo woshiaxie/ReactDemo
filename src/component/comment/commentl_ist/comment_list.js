@@ -11,7 +11,7 @@ class CommentList extends Component {
 
         this.state = {
             commentList: []
-        }
+        };
         this.initReduxStoreMockData(MockData.commentList)
     }
 
@@ -21,7 +21,6 @@ class CommentList extends Component {
      * @param mockCommentList
      */
     initReduxStoreMockData = (mockCommentList) => {
-        let stateFromRedux = Store.getState();
         let newState = {...mockCommentList};
         let addAction = Action.getAddCommentAction();
         for (let index in newState) {
@@ -29,7 +28,7 @@ class CommentList extends Component {
         }
         console.log('---initReduxStoreMockData---addAction.payload. == ', addAction)
         Store.dispatch(addAction)
-    }
+    };
 
     componentDidMount() {
         //必须先注册store.state的更新监听，否则初始化结果是拿不到的
