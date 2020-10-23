@@ -4,12 +4,13 @@ import Store from '../../redux/store';
 import Action from '../../redux/action';
 import CommentList from './commentl_ist/comment_list'
 import axios from 'axios';
+
 /**
  * 评价组件，分为两块。左侧为新评论输入区；右侧为评论列表模块
  */
 class Comment extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             newCommentContent: "",
             newCommentUser: "",
@@ -18,23 +19,27 @@ class Comment extends Component {
     }
 
     componentDidMount() {
-        axios.post('http://localhost:3000/restful/index',{}).then((response)=>{
-            console.log(response)
-        }).catch((err)=>{
-            console.log(err)
-        }).finally()
+        let api='http://www.apiopen.top/';
+        let api2 = 'https://jsonplaceholder.typicode.com/posts';
+        axios.get(api2, {})
+            .then((response) => {
+                console.log(response.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     handleUserNameChange = (event) => {
         this.setState({
             newCommentUser: event.target.value
         });
-    }
+    };
     handleContentChange = (event) => {
         this.setState({
             newCommentContent: event.target.value
         });
-    }
+    };
 
     sendComment = () => {
         let addCommentAction = Action.getAddCommentAction();
